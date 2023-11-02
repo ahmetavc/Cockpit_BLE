@@ -80,7 +80,7 @@
                 &ht LSHFT CLCK &kp Z      &kp X       &kp C       &kp V              &kp B                           &kp N &kp M  &kp COMMA         &kp DOT            &kp FSLH     &kp KP_MINUS
                                     &lt _NAVIGATION LALT  &lt _LOWER SPACE    &lt LCMD SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt RCTRL BSPC          &lt _RAISE TAB     &kp RIGHT_GUI
             >;
-            sensor-bindings = <&inc_dec_kp KC_BRIU KC_BRID &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_BRI_INC C_BRI_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         lower_layer {
