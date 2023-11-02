@@ -99,7 +99,7 @@
                 &kp ESC  &trans  &trans   &trans        &trans          &kp EXCL                        &kp LPAR  &kp RPAR      &kp AMPS        &kp AMPS           &kp PIPE  &trans
                 &trans   &trans  &trans   &trans        &trans          &kp AT                        &kp LBRC  &kp RBRC      &kp UNDER          &kp DOLLAR           &kp HASH     &kp BACKSLASH
                 &trans   &trans  &trans   &trans        &trans          &kp CARET                        &kp LBKT  &kp RBKT      &kp PIPE   &kp TILDE  &kp BSLH &none
-                                 &kp LALT  &kp SPACE    &kp LCTRL         &rgb_ug RGB_TOG  &ext_power EP_TOG       &kp RCMD      &kp ALT     &kp SHIFT
+                                 &kp LALT  &kp SPACE    &kp LCTRL         &rgb_ug RGB_TOG  &ext_power EP_TOG       &kp RCMD      &kp RALT     &kp RSHFT
             >;
             
             sensor-bindings = <&inc_dec_kp C_BRI_INC C_BRI_DEC &inc_dec_kp C_VOL_UP C_VOL_DN>;
