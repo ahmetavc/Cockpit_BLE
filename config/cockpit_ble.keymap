@@ -16,10 +16,10 @@
 #define _QWERTY       0
 #define _LOWER         1
 #define _RAISE         2
-#define _SPACE_RIGHT   3
-#define _SPACE_LEFT    4
-#define _NAVIGATION    5
-#define _ADJUST        6
+// #define _SPACE_RIGHT   3
+// #define _SPACE_LEFT    4
+#define _NAVIGATION    3
+// #define _ADJUST        6
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space
 &lt {
@@ -35,14 +35,6 @@
 
 
 / {
-    // conditional_layers {
-    //     compatible = "zmk,conditional-layers";
-    //     tri_layer {
-    //         if-layers = <1 2>; //lower and raise
-    //         then-layer = <6>;  // adjust
-    //     };
-    // };
-
     behaviors {
         ht: hold_tap {
             label = "hold_tap";
@@ -66,28 +58,29 @@
             #sensor-binding-cells = <0>;
             bindings = <&rgb_ug RGB_EFF>, <&rgb_ug RGB_EFR>;
         };
+        
     };
 
     keymap {
         compatible = "zmk,keymap";
         default_layer {
        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-       // │  ESC │  Q   │  W   │  E   │  R   │  T   │                          │  Y   │  U   │  I   │  O   │   P  │ BSPC │
+       // │  ESC │  Q   │  W   │  E   │  R   │  T   │                          │  Y   │  U   │  I   │  O   │   P  │KP_PLUS│
        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
        // │ CTRL │  A   │  S   │  D   │  F   │  G   │                          │  H   │  J   │  K   │  L   │  ;   │  '   │
        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-       // │SFT_CL│  Z   │  X   │  C   │  V   │  B   │         (ENCODERS)       │  N   │  M   │,     │.     │  /   │      │
+       // │SFT_CL│  Z   │  X   │  C   │  V   │  B   │         (ENCODERS)       │  N   │  M   │,     │.     │  /   │ KP_MINUS     │
        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-       //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+       //                      │  NAV │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯            
             label = "qwerty";
             bindings = <
-                &kp ESC        &kp Q      &kp W       &kp E       &kp R              &kp T                           &kp Y &kp U  &kp I                 &kp O          &kp P &kp BSPC
-                &kp LCTRL      &kp A      &kp S       &kp D       &kp F              &kp G                            &kp H &kp J  &kp K                 &kp L        &kp SEMI                &kp SQT
-                &ht LSHFT CLCK &kp Z      &kp X       &kp C       &kp V              &kp B                           &kp N &kp M  &kp COMMA         &kp DOT            &kp FSLH     &kp RCTRL
-                                    &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+                &kp ESC        &kp Q      &kp W       &kp E       &kp R              &kp T                           &kp Y &kp U  &kp I                 &kp O          &kp P &kp KP_PLUS
+                &kp Z      &kp A      &kp S       &kp D       &lt LSHFT F              &kp G                            &kp H &lt RSHFT J  &kp K                 &kp L        &kp SEMI                &kp SQT
+                &ht LSHFT CLCK &kp Z      &kp X       &kp C       &kp V              &kp B                           &kp N &kp M  &kp COMMA         &kp DOT            &kp FSLH     &kp KP_MINUS
+                                    &lt _NAVIGATION LALT  &lt _LOWER SPACE    &lt LCMD SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt RCTRL BSPC          &lt _RAISE TAB     &kp RIGHT_GUI
             >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP &inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp KC_BRIU KC_BRID &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         lower_layer {
@@ -105,7 +98,7 @@
                 &kp ESC  &trans  &trans   &trans        &trans          &trans                        &kp RS(N8)  &kp RS(N9)      &kp RS(N0)        &kp RS(N6)           &kp RA(EQUAL)  &trans
                 &trans   &trans  &trans   &trans        &trans          &trans                        &kp RA(N7)  &kp RA(N0)      &kp PLUS          &kp RA(N4)           &kp RA(N3)     &kp GRAVE
                 &trans   &trans  &trans   &trans        &trans          &trans                        &kp RA(N8)  &kp RA(N9)      &kp NON_US_BSLH   &kp RS(NON_US_BSLH)  &kp RA(MINUS)  &trans
-                                 &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PREV   &kp C_NEXT          &kp RET      &mo _RAISE     &kp RIGHT_GUI
+                                 &kp LALT  &lt _LOWER TAB    &kp SPACE         &kp C_PREV   &kp C_NEXT          &kp RET      &mo _RAISE     &kp RIGHT_GUI
             >;
             
             
@@ -113,11 +106,11 @@
         
         raise_layer {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │  /   │  1   │  2   │  3   │  -   │                          │  F1  │  F2  │  F3  │  F4  │      │      │
+        // │ ESC  │  /   │  7   │  8   │  9   │  -   │                          │  F1  │  F2  │  F3  │  F4  │      │      │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
         // │      │  *   │  4   │  5   │  6   │  +   │                          │  F5  │  F6  │  F7  │  F8  │      │      │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  %   │  7   │  8   │  9   │  0   │                          │  F9  │  F10 │ F11  │  F1  │      │      │
+        // │      │  %   │  1   │  2   │  3   │  0   │                          │  F9  │  F10 │ F11  │  F1  │      │      │
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
         //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
@@ -126,87 +119,87 @@
                 &kp ESC      &kp AMPS    &kp N1    &kp N2        &kp N3         &kp KP_MINUS                      &kp F1  &kp F2                  &kp F3            &kp F4       &trans   &kp DEL
                 &trans       &kp MINUS   &kp N4    &kp N5        &kp N6         &kp KP_PLUS                       &kp F5  &kp F6                  &kp F7            &kp F8       &trans   &trans
                 &caps_word   &kp PRCNT   &kp N7    &kp N8        &kp N9         &kp N0                            &kp F9  &kp F10                 &kp F11           &kp F12      &trans   &trans
-                                         &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+                                         &kp LALT  &lt _LOWER TAB    &kp SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &kp SPACE          &mo _RAISE     &kp RIGHT_GUI
             >;
 
         };
 
-        space_right_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ ESC  │      │      │  €   │  £   │  Ğ   │                          │      │      │      │      │      │      │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │  !   │  @   │  Ş   │  ₺   │      │                          │      │      │      │      │      │      │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │  Ç   │      │      │                          │      │      │      │      │      │      │
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
-            label = "Space R";            
-            bindings = <
-                &kp ESC      &trans    &trans     &kp RA(E)        &kp  RA(N2)     &kp LBKT                      &trans            &trans                  &trans          &trans   &trans    &trans
-                &trans       &kp EXCL  &kp RA(Q)  &kp SEMI         &kp  RA(T)      &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
-                &trans       &trans    &trans     &ht LSHFT  DOT   &trans          &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
-                >;
-        };
+        // space_right_layer {
+        // // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
+        // // │ ESC  │      │      │  €   │  £   │  Ğ   │                          │      │      │      │      │      │      │
+        // // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // // │      │  !   │  @   │  Ş   │  ₺   │      │                          │      │      │      │      │      │      │
+        // // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // // │      │      │      │  Ç   │      │      │                          │      │      │      │      │      │      │
+        // // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
+        // //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+        // //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
+        //     label = "Space R";            
+        //     bindings = <
+        //         &kp ESC      &trans    &trans     &kp RA(E)        &kp  RA(N2)     &kp LBKT                      &trans            &trans                  &trans          &trans   &trans    &trans
+        //         &trans       &kp EXCL  &kp RA(Q)  &kp SEMI         &kp  RA(T)      &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
+        //         &trans       &trans    &trans     &ht LSHFT  DOT   &trans          &trans                        &trans            &trans                  &trans          &trans   &trans    &trans
+        //                                &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+        //         >;
+        // };
 
-        space_left_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │      │      │      │      │      │      │                          │      │      │  Ü   │      │  :   │ DEL  │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │      │      │  I   │  I   │  Ö   │   `  │
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │      │      │  ^   │  ~   │  ?   │ ENT  │
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │RGB_TOG ││ EP_TOG │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
-            label = "Space L";            
-            bindings = <
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp RBKT            &trans         &kp LS(SLASH)   &kp DEL
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp LS(I)           &kp I          &kp COMMA       &kp RA(NON_US_HASH)
-                &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &ht RSHFT RS(N3)    &kp RA(RBKT)   &kp UNDER       &trans
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE       &rgb_ug RGB_TOG  &ext_power EP_TOG     &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
-            >;
-            sensor-bindings = <&rgb_encoder_left &rgb_encoder_right>;
-        };
+        // space_left_layer {
+        // // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
+        // // │      │      │      │      │      │      │                          │      │      │  Ü   │      │  :   │ DEL  │
+        // // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // // │      │      │      │      │      │      │                          │      │      │  I   │  I   │  Ö   │   `  │
+        // // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // // │      │      │      │      │      │      │                          │      │      │  ^   │  ~   │  ?   │ ENT  │
+        // // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
+        // //                      │  ALT │LOWER │ SPACE  │ │RGB_TOG ││ EP_TOG │ │ SPACE  │RAISE │ WIN  │
+        // //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯
+        //     label = "Space L";            
+        //     bindings = <
+        //         &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp RBKT            &trans         &kp LS(SLASH)   &kp DEL
+        //         &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &kp LS(I)           &kp I          &kp COMMA       &kp RA(NON_US_HASH)
+        //         &trans       &trans    &trans     &trans         &trans             &trans                     &trans          &trans      &ht RSHFT RS(N3)    &kp RA(RBKT)   &kp UNDER       &trans
+        //                                &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE       &rgb_ug RGB_TOG  &ext_power EP_TOG     &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+        //     >;
+        //     sensor-bindings = <&rgb_encoder_left &rgb_encoder_right>;
+        // };
 
         navigation_layer {
         // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
         // │ ESC  │      │      │      │      │      │                          │C_PREV│ PGUP │  UP  │      │      │      │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │NAV T │      │                          │ HOME │ LEFT │ DOWN │ RGHT │ END  │MPLY  │
+        // │      │      │      │ ctrl │alt   │ cmd  │                          │ LEFT │ UP   │ DOWN │ RGHT │ END  │MPLY  │
         // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
         // │      │      │      │      │      │      │                          │C_NEXT│PGDOWN│      │VLDOWN│ VLUP │MUTE  │
         // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  |SHIFT │ WIN  │
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
             label = "Navi";     
             bindings = <
                 &kp ESC      &trans    &trans     &trans           &trans       &trans       &kp C_PREV              &kp PG_UP   &kp UP                  &trans         &trans         &trans
-                &trans       &trans    &trans     &trans           &trans       &trans       &kp HOME                &kp LEFT    &kp DOWN                &kp RIGHT      &kp END        &kp C_PLAY_PAUSE
+                &trans       &trans    &trans     &kp LCTRL           &kp ALT       &kp LCMD       &kp LEFT                &kp UP    &kp DOWN                &kp RIGHT      &kp END        &kp C_PLAY_PAUSE
                 &trans       &trans    &trans     &trans           &trans       &trans       &kp C_NEXT              &kp PG_DN   &none                   &kp C_VOL_DN   &kp C_VOL_UP   &kp C_MUTE
-                                       &kp LALT  &lt _LOWER TAB    &lt _SPACE_LEFT SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &lt _SPACE_RIGHT SPACE          &mo _RAISE     &kp RIGHT_GUI
+                                       &kp LALT  &kp TAB    &kp SPACE         &kp C_PLAY_PAUSE  &kp C_MUTE       &kp RSHFT         &kp RSHFT     &kp RIGHT_GUI
             >;
         };
 
-        adjust_layer {
-        // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
-        // │ BRI+ │ SAT+ │ HUE+ │ ANI+ │      │ TOG  │                          │  BT1 │ BT2  │ BT3  │ BT4  │ BT5  │BT_CLR│
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │ BRI- │ SAT- │ HUE- │ ANI- │      │      │                          │      │      │      │EP_ON │EP_OFF│EP_TOG│
-        // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
-        // │      │      │      │      │      │      │                          │RESET │ BOOT │      │O_USB │O_BLE │OUTTOG│
-        // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
-        //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
-        //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯    
-            label = "Adjust";        
-            bindings = <
-                &rgb_ug RGB_BRI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_EFF &none &rgb_ug RGB_TOG              &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3       &bt BT_SEL 4        &bt BT_CLR
-                &rgb_ug RGB_BRD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_EFR &none &none                        &none        &none         &none        &ext_power EP_ON   &ext_power EP_OFF   &ext_power EP_TOG
-                &none           &none           &none           &none           &none &none                        &sys_reset   &bootloader   &none        &out OUT_USB       &out OUT_BLE        &out OUT_TOG
-                                                &none           &none           &none         &none      &none     &none        &none        &none
-            >;
-        };
+        // adjust_layer {
+        // // ╭──────┬──────┬──────┬──────┬──────┬──────╮                          ╭──────┬──────┬──────┬──────┬──────┬──────╮
+        // // │ BRI+ │ SAT+ │ HUE+ │ ANI+ │      │ TOG  │                          │  BT1 │ BT2  │ BT3  │ BT4  │ BT5  │BT_CLR│
+        // // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // // │ BRI- │ SAT- │ HUE- │ ANI- │      │      │                          │      │      │      │EP_ON │EP_OFF│EP_TOG│
+        // // ├──────┼──────┼──────┼──────┼──────┼──────┤                          ├──────┼──────┼──────┼──────┼──────┼──────┤
+        // // │      │      │      │      │      │      │                          │RESET │ BOOT │      │O_USB │O_BLE │OUTTOG│
+        // // ╰──────┴──────┴──────┼──────┼──────┼──────┴─╮ ╭────────╮╭────────╮ ╭─┴──────┼──────┼──────┼──────┴──────┴──────╯
+        // //                      │  ALT │LOWER │ SPACE  │ │  PAUSE ││  PAUSE │ │ SPACE  │RAISE │ WIN  │
+        // //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯    
+        //     label = "Adjust";        
+        //     bindings = <
+        //         &rgb_ug RGB_BRI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_EFF &none &rgb_ug RGB_TOG              &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3       &bt BT_SEL 4        &bt BT_CLR
+        //         &rgb_ug RGB_BRD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_EFR &none &none                        &none        &none         &none        &ext_power EP_ON   &ext_power EP_OFF   &ext_power EP_TOG
+        //         &none           &none           &none           &none           &none &none                        &sys_reset   &bootloader   &none        &out OUT_USB       &out OUT_BLE        &out OUT_TOG
+        //                                         &none           &none           &none         &none      &none     &none        &none        &none
+        //     >;
+        // };
     };
 };
 
