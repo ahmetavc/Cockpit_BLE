@@ -76,11 +76,11 @@
             label = "qwerty";
             bindings = <
                 &kp ESC        &kp Q      &kp W       &kp E       &kp R              &kp T                           &kp Y  &kp U    &kp I      &kp O     &kp P &kp BKSP
-                &kp Z      &kp A      &kp S       &kp D       &ht LSHFT F              &kp G                            &kp H    &ht RSHFT J      &kp K       &kp L        &kp SEMI  &kp SQT
+                &kp ESC      &kp A      &kp S       &kp D       &ht LSHFT F              &ht LCMD G                            &ht RCTRL H    &ht RSHFT J      &kp K       &kp L        &kp SEMI  &kp SQT
                 &ht LSHFT CLCK &kp Z      &kp X       &kp C       &kp V              &kp B                           &kp N &kp M  &kp COMMA         &kp DOT            &kp FSLH     &kp KP_MINUS
-                                    &lt _NAVIGATION TAB    &lt _LOWER SPACE    &ht LCMD ENTER         &kp C_PLAY_PAUSE  &kp C_MUTE       &ht RCTRL TAB          &lt _RAISE BSPC     &lt _NAVIGATION RIGHT_GUI
+                                    &lt _NAVIGATION TAB    &lt _LOWER SPACE    &ht LCMD ENTER         &kp C_PLAY_PAUSE  &kp C_MUTE       &ht RCTRL TAB          &lt _RAISE BSPC     &ht RCTRL ESC
             >;
-            
+            sensor-bindings = <&inc_dec_kp C_BRI_INC C_BRI_DEC &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
 
@@ -102,7 +102,6 @@
                                  &kp LALT  &kp SPACE    &kp LCTRL         &rgb_ug RGB_TOG  &ext_power EP_TOG       &kp RCMD      &kp RALT     &kp RSHFT
             >;
             
-            sensor-bindings = <&inc_dec_kp C_BRI_INC C_BRI_DEC &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
         
         
@@ -118,8 +117,8 @@
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
             label = "Raise";         
             bindings = <
-                &kp ESC      &kp AMPS    &kp N7    &kp N8        &kp N9         &kp KP_PLUS                      &kp F1  &kp F2                  &kp F3            &kp F4       &trans   &kp DEL
-                &trans       &kp MINUS   &kp N4    &kp N5        &kp N6         &kp KP_MINUS                       &kp F5  &kp F6                  &kp F7            &kp F8       &trans   &trans
+                &kp ESC      &kp SLASH    &kp N7    &kp N8        &kp N9         &kp KP_PLUS                      &kp F1  &kp F2                  &kp F3            &kp F4       &trans   &kp DEL
+                &trans       &kp STAR   &kp N4    &kp N5        &kp N6         &kp KP_MINUS                       &kp F5  &kp F6                  &kp F7            &kp F8       &trans   &trans
                 &caps_word   &kp PRCNT   &kp N1    &kp N2        &kp N3         &kp EQUAL                            &kp F9  &kp F10                 &kp F11           &kp F12      &trans   &trans
                                          &kp LALT  &kp N0    &kp LCMD         &kp C_PLAY_PAUSE  &kp C_MUTE       &kp RCMD          &none     &kp RIGHT_GUI
             >;
