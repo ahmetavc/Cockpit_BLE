@@ -97,7 +97,7 @@
             label = "Lower";        
             bindings = <
                 &kp ESC  &trans  &trans   &trans        &trans          &kp EXCL                        &kp LPAR  &kp RPAR      &kp AMPS        &kp HASH           &kp PIPE  &trans
-                &trans   &trans  &trans   &trans        &trans          &kp AT                        &kp LBRC  &kp RBRC      &kp UNDER          &kp DOLLAR           &kp CARET     &kp BACKSLASH
+                &trans   &trans  &trans   &trans        &trans          &kp AT                        &kp LBRC  &kp RBRC      &kp UNDER          &kp CARET           &kp DOLLAR     &kp BACKSLASH
                 &trans   &trans  &trans   &trans        &trans          &kp CARET                        &kp LBKT  &kp RBKT      &kp PIPE   &kp TILDE  &kp BSLH &none
                                  &kp LALT  &kp SPACE    &kp LCTRL         &rgb_ug RGB_TOG  &ext_power EP_TOG       &kp RCMD      &kp RALT     &kp RSHFT
             >;
