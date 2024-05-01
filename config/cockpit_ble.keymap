@@ -177,7 +177,7 @@
         //                      ╰──────┴──────┴────────╯ ╰────────╯╰────────╯ ╰────────┴──────┴──────╯   
             label = "Navi";     
             bindings = <
-                &kp ESC      &trans    &trans     &trans           &trans       &trans       &kp C_PREV              &kp PG_UP   &kp UP                  &trans         &trans         &trans
+                &kp ESC      &trans    &trans     &trans           &trans       &trans       &kp D              &kp F   &kp G                  &trans         &trans         &trans
                 &trans       &trans    &trans     &kp LCTRL           &kp LALT       &kp LCMD       &kp LEFT       &kp DOWN    &kp UP                &kp RIGHT      &kp END        &kp C_PLAY_PAUSE
                 &trans       &trans    &trans     &trans           &trans       &trans       &kp C_NEXT              &kp PG_DN   &none                   &kp C_VOL_DN   &kp C_VOL_UP   &kp C_MUTE
                                        &none  &kp LALT    &kp LCMD         &kp C_PLAY_PAUSE  &kp C_MUTE       &kp RSHFT         &kp RSHFT     &kp RIGHT_GUI
