@@ -1,36 +1,41 @@
-
 if BOARD_COCKPIT_BLE
-
 config BOARD
-	default "cockpit_ble"
+    string
+    default "cockpit_ble"
 
 config ZMK_KEYBOARD_NAME
+    string
     default "Cockpit BLE"
 
 config USB_DEVICE_MANUFACTURER
-	default "ozkancelik.com"
+    string
+    default "ozkancelik.com"
 
 if ZMK_DISPLAY
-
 config I2C
-	default y
+    bool
+    default y
 
 config SSD1306
-	default y
+    bool
+    default y
 
 config SSD1306_REVERSE_MODE
-	default y
-
+    bool
+    default y
 endif # ZMK_DISPLAY
 
 if LVGL
 config LV_Z_VDB_SIZE
+    int
     default 64
 
 config LV_Z_DPI
+    int
     default 148
 
 config LV_Z_BITS_PER_PIXEL
+    int
     default 1
 
 choice LV_COLOR_DEPTH
@@ -38,21 +43,22 @@ choice LV_COLOR_DEPTH
 endchoice
 endif # LVGL
 
-
 if USB_DEVICE_STACK
-
 config USB_NRFX
-	default y
-
+    bool
+    default y
 endif # USB_DEVICE_STACK
 
 config BT_CTLR
-	default BT
+    bool
+    default BT
 
 config ZMK_BLE
-	default y
+    bool
+    default y
 
 config ZMK_USB
-	default y
+    bool
+    default y
 
 endif # BOARD_COCKPIT_BLE
