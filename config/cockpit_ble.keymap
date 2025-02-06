@@ -19,7 +19,7 @@
 // #define _SPACE_RIGHT   3
 // #define _SPACE_LEFT    4
 #define _NAVIGATION    3
-#define _ADJUST        6
+#define _ADJUST        4
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space
 &lt {
